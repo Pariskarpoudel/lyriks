@@ -50,7 +50,7 @@ const fetchSongsAroundYou = (countryCode) => {
         const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'eecc8f0018mshb1e469686d439bbp147c89jsn4290ae04b05b',
+            'X-RapidAPI-Key': import.meta.env.VITE_SHAZAMLITEKEY,
             'X-RapidAPI-Host': 'shazam-api9.p.rapidapi.com'
         }
         };
