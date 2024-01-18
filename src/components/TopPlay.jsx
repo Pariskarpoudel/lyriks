@@ -49,7 +49,7 @@ const TopPlay = () => {
     //   return;
     // }
     // behavior instant rakhe sidhai mathi jo dekhinxa, mobile view ma refresh garda suruma bottom of the page dekhairathyo
-    divRef.current?.scrollIntoView({behavior: 'smooth'});}
+    divRef.current?.scrollIntoView({behavior: 'smooth'})}
   )
 
   const topPlays = data?.tracks?.slice(0,5);

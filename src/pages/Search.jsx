@@ -3,11 +3,13 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {useGetSongsBySearchQuery} from "../redux/services/searchsong";
 import { Loader,Error, SongCard } from "../components";
+import { useEffect,useRef } from "react";
 
   // searchterm , search component le url bata pauni vayo, communicated between 2 components using url
   // next way as, state ko roopma searchterm lai store ma  haalni, balla search component could get the searchterm
 const Search = () =>{
     const {searchTerm} = useParams()
+    const searchRef = useRef(null);
     const {data, isFetching, error} =  useGetSongsBySearchQuery(searchTerm)
     const {activeSong, isPlaying} = useSelector((state)=>state.player)
 
@@ -19,11 +21,14 @@ const Search = () =>{
     if(error){
         return <Error/>
     }
-
+    
+    useEffect(()=>{
+        searchRef.current?.scrollIntoView({behavior: 'smooth'})
+    })
 
 
     return(
-        <div className="flex flex-col">
+        <div className="flex flex-col" ref="searchRef">
 
           {!songs?.length ?  
           <h2 className="font-bold text-2xl text-white mt-16 mb-10 text-center">Sorry, no results found !</h2>
