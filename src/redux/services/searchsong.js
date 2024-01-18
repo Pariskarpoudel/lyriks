@@ -5,7 +5,7 @@ export const searchSong = createApi({
     baseQuery: fetchBaseQuery({
       baseUrl: "https://test-shazam.p.rapidapi.com",
       prepareHeaders: (headers)=>{
-        headers.set('X-RapidAPI-Key',`${process.env.SEARCHSONGKEY}`),
+        headers.set('X-RapidAPI-Key',`${import.meta.env.SEARCHSONGKEY}`),
         headers.set('X-RapidAPI-Host','test-shazam.p.rapidapi.com')
         return  headers;
       },
