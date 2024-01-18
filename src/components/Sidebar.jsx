@@ -20,7 +20,7 @@ const NavLinks = () => (
 )
 
 const Sidebar = () => {
-// we need to know if mobile navbar is open coz it has diff design
+// we need to know if mobile navbar is open coz it has different design
 const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 return(
   <>
