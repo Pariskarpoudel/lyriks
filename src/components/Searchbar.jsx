@@ -20,7 +20,7 @@ return(
   {/* esko within ka kunai element like input focus maa aaepar , this whole form will be selected and applied a text-gray-600, so input focus huda searchicon  ko ni color gray vayo, yo icon ni text ho kya  */}
   <label htmlFor="search-field" className="sr-only">Search all songs</label>
   <div className="flex flex-row justify-start items-center">
-    <FiSearch className='w-5 h-5 ml-4'/>
+    <FiSearch className='w-6 h-6 ml-4'/>
     <input 
     type="search"
     name="search-field"

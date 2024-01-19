@@ -5,7 +5,7 @@ import { useGetTopChartsQuery } from '../redux/services/shazam';
 import { useGetSongsByGenreQuery } from '../redux/services/shazam_lite';
  // map ma ( item, index, array)
 import { selectGenreListId } from '../redux/features/playerSlice';
-import { useEffect, useState } from 'react';
+import { useEffect, useState ,useRef} from 'react';
 
 
  // genre jun select garxa tei anusar aru dherai component render hunxan, so aile kun genre selected xa, tyo lai redux  store/state  ma rakhni, ani get the current selected genre from there too
@@ -13,12 +13,20 @@ import { useEffect, useState } from 'react';
 
 const Discover = () => {
     const dispatch = useDispatch();
+    const divRef = useRef(null)
     const {activeSong, isPlaying,genreListId} = useSelector((state)=>state.player);
     // const [genre, setGenre] = useState("POP")
     // const [data, setData] = useState([])
     const {data , isFetching, error} = useGetSongsByGenreQuery(genreListId || 'POP')
     // const {data, isFetching, error} = useGetTopChartsQuery();   // destructuring, we get these 3 things, data means response, isfetching means pending
-   
+    useEffect(() => {
+
+        setTimeout(() => {
+            divRef.current?.scrollIntoView({ behavior: 'smooth', block:'start' });
+        },1500);
+      
+});
+  
    
     if (isFetching){
         return <Loader title="Loading songs..."/>;
@@ -27,6 +35,7 @@ const Discover = () => {
         return <Error/>
     }
 
+  
     // useEffect(()=>{
     //     fetchSongsByGenre(genreListId || 'POP')
 
@@ -60,10 +69,10 @@ const Discover = () => {
     // }
 
     return(
-        <div className='flex flex-col'>
+        <div  className='flex flex-col' >
           
-            <div className='w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10 pt-1'>
-               <h2 className='font-bold text-3xl text-white text-left'>Discover {genreTitle || 'Pop'}</h2>
+            <div className='w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10 pt-1'  >
+               <h2   className='font-bold text-3xl text-white text-left' >Discover {genreTitle || 'Pop' }</h2>
                <select 
                onChange={(e)=>{dispatch(selectGenreListId(e.target.value))}}
                // local state vaepar,const [genre, setGenre] = useState("")  onchange={setGenre(e.target.value)} , value={genre}
@@ -74,6 +83,7 @@ const Discover = () => {
                </select>
 
             </div>
+     
             <div className='flex flex-wrap sm:justify-start justify-center gap-8'>
             {data?.tracks?.map((song,i)=>
             <SongCard  key={song.key} song={song} i={i} isPlaying={isPlaying} activeSong={activeSong} data={data}/>)

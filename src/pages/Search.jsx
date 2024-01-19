@@ -12,6 +12,9 @@ const Search = () =>{
     const searchRef = useRef(null);
     const {data, isFetching, error} =  useGetSongsBySearchQuery(searchTerm)
     const {activeSong, isPlaying} = useSelector((state)=>state.player)
+    useEffect(()=>{
+        searchRef.current?.scrollIntoView({behavior: 'smooth'})
+    },[searchRef])
 
     const songs = data?.map((song)=>song.track)
 
@@ -22,13 +25,10 @@ const Search = () =>{
         return <Error/>
     }
     
-    useEffect(()=>{
-        searchRef.current?.scrollIntoView({behavior: 'smooth'})
-    })
-
+  
 
     return(
-        <div className="flex flex-col" ref="searchRef">
+        <div className="flex flex-col" ref={searchRef}>
 
           {!songs?.length ?  
           <h2 className="font-bold text-2xl text-white mt-16 mb-10 text-center">Sorry, no results found !</h2>

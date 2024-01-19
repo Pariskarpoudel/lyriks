@@ -50,7 +50,7 @@ const fetchSongsAroundYou = (countryCode) => {
         const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': import.meta.env.VITE_SHAZAMLITEKEY,
+            'X-RapidAPI-Key': '6697dd9bccmshf80994ac087cbeep192a7ejsn88dcb073e654',
             'X-RapidAPI-Host': 'shazam-api9.p.rapidapi.com'
         }
         };
@@ -96,7 +96,7 @@ const fetchSongsAroundYou = (countryCode) => {
     return(
         <div className="flex flex-col">
             
-            { !songs.length ? (<Loader title="Loading songs around you"/>)
+            { !songs?.length ? (<Loader title="Loading songs around you"/>)
             :
             <>
             <h2 className="font-bold text-3xl text-white text-left mt-4 mb-10">Around You <span className="font-black"> {country}</span></h2>

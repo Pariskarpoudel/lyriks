@@ -4,8 +4,10 @@ export const searchSong = createApi({
     middleware: (getDefaultMiddleware)=> getDefaultMiddleware().concat(shazamApi.middleware),
     baseQuery: fetchBaseQuery({
       baseUrl: "https://test-shazam.p.rapidapi.com",
+      // import.meta.env.VITE_SEARCHSONGKEY
       prepareHeaders: (headers)=>{
-        headers.set('X-RapidAPI-Key',import.meta.env.VITE_SEARCHSONGKEY),
+// VITE_SEARCHSONGKEY = 6697dd9bccmshf80994ac087cbeep192a7ejsn88dcb073e654
+        headers.set('X-RapidAPI-Key','6697dd9bccmshf80994ac087cbeep192a7ejsn88dcb073e654'),
         headers.set('X-RapidAPI-Host','test-shazam.p.rapidapi.com')
         return  headers;
       },

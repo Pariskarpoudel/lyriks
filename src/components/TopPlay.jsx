@@ -42,15 +42,22 @@ const TopPlay = () => {
   const {activeSong, isPlaying} = useSelector((state)=>state.player)
   const {data} = useGetTopChartsQuery();
   
+  useEffect(() => {
 
-  useEffect(()=>{
-    // divref.current returns that element here like by using dom query selectors
-    // if(!divRef.current){
-    //   return;
-    // }
-    // behavior instant rakhe sidhai mathi jo dekhinxa, mobile view ma refresh garda suruma bottom of the page dekhairathyo
-    divRef.current?.scrollIntoView({behavior: 'smooth'})}
-  )
+    setTimeout(() => {
+        divRef.current?.scrollIntoView({ behavior: 'smooth', block:'start' });
+    },1500);
+  
+});
+
+  // useEffect(()=>{
+  //   // divref.current returns that element here like by using dom query selectors
+  //   // if(!divRef.current){
+  //   //   return;
+  //   // }
+  //   // behavior instant rakhe sidhai mathi jo dekhinxa, mobile view ma refresh garda suruma bottom of the page dekhairathyo
+  //   divRef.current?.scrollIntoView({behavior: 'smooth'})}
+  // )
 
   const topPlays = data?.tracks?.slice(0,5);
   const topArts = data?.tracks?.slice(0,10)
@@ -65,9 +72,9 @@ const TopPlay = () => {
 
   return(
 
-  <div ref={divRef} className="xl:ml-6 ml-0 xl:mb-0 mb-6 flex-1 xl:max-w-[400px] max-w-full flex flex-col relative">
+  <div  className="xl:ml-6 ml-0 xl:mb-0 mb-6 flex-1 xl:max-w-[400px] max-w-full flex flex-col relative">
     
-      <div className="w-full flex flex-col">
+      <div className="w-full flex flex-col" >
    
           <div className='flex flex-row justify-between items-center'>
             {topPlays?.length ? (<>
@@ -88,7 +95,7 @@ const TopPlay = () => {
       </div>
       </div>
     
-      <div className="w-full flex flex-col mt-5">
+      <div className="w-full flex flex-col mt-5" >
     
         <div className="flex flex-row justify-between items-center">
           {topArts?.length ? (<>
@@ -108,6 +115,7 @@ const TopPlay = () => {
         spaceBetween={15}
         freeMode
         centeredSlides
+       
         centeredSlidesBounds
         modules={[FreeMode]}
         className="mt-5">
@@ -119,7 +127,9 @@ const TopPlay = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-      
+
+     
+      <div ref={divRef}></div>
 
       </div>
       </div>
